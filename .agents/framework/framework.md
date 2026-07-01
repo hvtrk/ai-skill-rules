@@ -5,7 +5,7 @@ description: Defines the architecture, philosophy, and operating model of the AI
 
 # AI Engineering Framework
 
-Version: 1.0
+Version: 1.1
 
 Status: Stable
 
@@ -23,7 +23,12 @@ Its purpose is to ensure engineering work remains:
 - predictable
 - repository-aware
 
-The framework separates behaviour, process, and project knowledge into independent layers.
+The framework supports both:
+
+- creating new software projects
+- working with existing repositories
+
+The framework separates behaviour, process, framework knowledge, and project knowledge into independent layers.
 
 ---
 
@@ -38,13 +43,13 @@ The framework follows four principles.
 
 The objective is not to redesign software.
 
-The objective is to help engineers safely evolve existing systems.
+The objective is to help engineers safely bootstrap new projects and evolve existing systems.
 
 ---
 
 # Framework Layers
 
-The framework is organized into four independent layers.
+The framework is organized into five independent layers.
 
 ## Layer 1 — Rules
 
@@ -82,7 +87,25 @@ Playbooks are loaded only when required.
 
 ---
 
-## Layer 3 — Project
+## Layer 3 — Framework Knowledge
+
+Location
+
+```
+.agents/knowledge/frameworks/
+```
+
+Purpose
+
+Framework-specific engineering knowledge.
+
+These documents describe supported application frameworks, recommended architectures, project structures, and implementation patterns.
+
+Framework knowledge is loaded only when creating a new project or when framework-specific guidance is required.
+
+---
+
+## Layer 4 — Project
 
 Location
 
@@ -96,11 +119,11 @@ Repository-specific knowledge.
 
 These documents describe the current repository.
 
-Unlike Rules and Playbooks, these documents are unique for every project.
+Unlike Rules, Playbooks, and Framework Knowledge, these documents are unique for every project.
 
 ---
 
-## Layer 4 — Repository
+## Layer 5 — Repository
 
 The repository itself.
 
@@ -112,10 +135,13 @@ It never replaces repository evidence.
 
 ---
 
-# Engineering Workflow
+# Engineering Workflows
 
-The intended engineering workflow is:
+The framework supports two engineering workflows.
 
+## Existing Repository
+
+```
 Repository
 
 ↓
@@ -141,6 +167,37 @@ Documentation Synchronization
 ↓
 
 Code Review
+```
+
+---
+
+## New Project
+
+```
+Empty Repository
+
+↓
+
+Project Bootstrap
+
+↓
+
+Framework Selection
+
+↓
+
+Project Scaffolding
+
+↓
+
+Repository Indexing
+
+↓
+
+Standard Engineering Workflow
+```
+
+After a project has been bootstrapped, it is treated as an existing repository.
 
 ---
 
@@ -153,6 +210,10 @@ Own behaviour.
 ## Playbooks
 
 Own engineering workflows.
+
+## Framework Knowledge
+
+Own framework-specific engineering knowledge.
 
 ## Project
 
@@ -175,6 +236,8 @@ The framework is designed to be:
 - framework independent
 - language independent
 - repository independent
+
+Framework-specific knowledge should remain isolated from the core engineering framework.
 
 Only the Project layer should change between repositories.
 
@@ -203,19 +266,22 @@ Example:
 
 # Scope
 
-The framework governs engineering behaviour.
+The framework governs engineering behaviour and engineering workflows.
 
 It does not dictate:
 
 - programming languages
-- frameworks
+- application frameworks
 - infrastructure
 - architecture styles
 
-Those belong to the repository being analyzed.
+Those belong to the selected framework or the repository being analyzed.
 
 ---
 
 # Goal
 
-The objective of the framework is to make AI behave like an experienced software engineer working within an existing codebase instead of an autonomous code generator.
+The objective of the framework is to make AI behave like an experienced software engineer that can either:
+
+- bootstrap a new software project using an approved framework
+- work safely within an existing codebase while preserving its architecture and conventions

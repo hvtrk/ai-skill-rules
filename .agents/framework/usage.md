@@ -1,6 +1,6 @@
 # AI Engineering Framework Usage Guide
 
-Version: 1.0.0
+Version: 1.1.0
 
 Status: Stable
 
@@ -10,15 +10,19 @@ Status: Stable
 
 This guide explains how to use the AI Engineering Framework during everyday software development.
 
-The framework is designed to minimize repeated repository analysis while ensuring the AI works consistently within the existing architecture.
+The framework is designed to support both new project creation and engineering within existing repositories while minimizing repeated repository analysis and ensuring the AI works consistently with the selected architecture.
 
 In most situations the AI should automatically determine the appropriate playbook based on the requested task.
 
 ---
 
-# Typical Workflow
+# Engineering Workflows
 
-For an existing repository, the normal engineering lifecycle is:
+The framework supports two engineering workflows.
+
+## Existing Repository
+
+Use this workflow when the repository already contains an application.
 
 ```
 Initialize Framework
@@ -40,7 +44,57 @@ Repository indexing and architecture analysis should only occur when necessary.
 
 ---
 
-# First-Time Repository Setup
+## New Project
+
+Use this workflow when creating a brand-new application.
+
+```
+Initialize Framework
+        │
+        ▼
+Project Bootstrap
+        │
+        ▼
+Select Framework
+        │
+        ▼
+Generate Project Scaffold
+        │
+        ▼
+Repository Ready
+        │
+        ▼
+Normal Engineering Workflow
+```
+
+Once the project has been generated, it should be treated as an existing repository.
+---
+
+# Bootstrap a New Project
+
+Use this when creating a brand-new application or bootstrapping an empty repository.
+
+### Prompt
+
+```text
+Initialize yourself using the AI Engineering Framework.
+
+Load the framework and rules.
+
+Execute the Project Bootstrap playbook.
+
+Determine the required technology stack.
+
+Load the appropriate framework knowledge.
+
+Generate a production-ready project scaffold.
+
+Summarize the generated project and wait for further instructions.
+```
+
+---
+
+# First-Time Existing Repository Setup
 
 Use this only once after copying the framework into an existing repository.
 
@@ -66,7 +120,7 @@ Summarize the generated knowledge and wait for further instructions.
 
 # Daily Development Session
 
-Use this when the repository already contains project knowledge.
+Use this after a project has been bootstrapped or when working with an existing repository that already contains project knowledge.
 
 ### Prompt
 
@@ -233,6 +287,8 @@ Summarize the upgrade plan before making changes.
 
 | Goal                         | Suggested Prompt                                             |
 | ---------------------------- | ------------------------------------------------------------ |
+| Bootstrap new project        | Bootstrap a new project using the AI Engineering Framework.  |
+| Create FastAPI backend       | Create a new FastAPI backend.                                |
 | Initialize repository        | Initialize the AI Engineering Framework for this repository. |
 | Start a development session  | Load the framework and repository knowledge.                 |
 | Build a feature              | Implement a new feature following the framework.             |
@@ -243,6 +299,7 @@ Summarize the upgrade plan before making changes.
 | Synchronize documentation    | Synchronize the project knowledge.                           |
 | Perform release review       | Perform a release readiness review.                          |
 | Upgrade framework            | Upgrade the AI Engineering Framework.                        |
+
 
 ---
 
@@ -260,7 +317,7 @@ Summarize the upgrade plan before making changes.
 
 # Framework Philosophy
 
-The framework is designed to behave like a senior software engineer working within an existing codebase.
+The framework is designed to behave like a senior software engineer capable of both creating production-ready software projects and evolving existing codebases while preserving architecture, consistency, and engineering quality.
 
 Its purpose is to:
 
@@ -270,5 +327,7 @@ Its purpose is to:
 * remain evidence-based
 * produce maintainable software
 * keep repository knowledge synchronized with the evolving codebase
+* Bootstrap new projects using the Project Bootstrap playbook.
+* After project creation, treat the project as an existing repository.
 
 The framework should assist engineering teams by providing structured reasoning and repeatable engineering workflows rather than replacing engineering judgment.

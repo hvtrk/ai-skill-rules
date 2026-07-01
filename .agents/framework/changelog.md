@@ -7,6 +7,38 @@ description: Version history of the AI Engineering Framework.
 
 ---
 
+## v1.1.0
+
+### Added
+
+#### Framework
+
+- Support for bootstrapping new software projects.
+- Framework-specific engineering knowledge.
+- Supported Frameworks documentation.
+
+#### Playbooks
+
+- Project Bootstrap
+
+#### Framework Knowledge
+
+##### FastAPI
+
+- Architecture
+- Boilerplate
+- Feature Structure
+
+### Changed
+
+#### Framework
+
+- The framework now supports both existing repositories and new project creation.
+- Added automatic workflow selection based on repository state.
+- Existing repository workflow remains fully backward compatible.
+
+---
+
 ## v1.0.0
 
 Initial public version.

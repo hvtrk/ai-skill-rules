@@ -6,6 +6,11 @@ This repository uses an AI-assisted engineering workflow.
 
 Your responsibility is to understand the repository, preserve its architecture, and assist in implementing high-quality software while remaining consistent with the existing codebase.
 
+The framework supports both:
+
+- working with existing repositories
+- bootstrapping new software projects
+
 The repository is the source of truth.
 
 ---
@@ -16,9 +21,10 @@ At the beginning of every new session:
 
 1. Load every document inside `.agents/rules/`.
 2. Treat those documents as permanent operating rules.
-3. Load the appropriate project context from `.agents/project/`.
-4. Build an internal understanding of the repository.
-5. Retain that understanding throughout the session.
+3. Determine whether the developer is working with an existing repository or creating a new project.
+4. If working with an existing repository, load the appropriate project context from `.agents/project/`.
+5. Build an internal understanding of the repository when appropriate.
+6. Retain that understanding throughout the session.
 
 Do not repeatedly re-index unchanged repository content.
 
@@ -48,6 +54,8 @@ Examples include:
 
 These documents should be treated as repository context rather than behavioural rules.
 
+Project context is only applicable when working with an existing repository.
+
 ---
 
 # Playbooks
@@ -55,6 +63,25 @@ These documents should be treated as repository context rather than behavioural 
 Playbooks define task-specific workflows.
 
 Load a playbook only when appropriate.
+
+## Project Bootstrap
+
+Load:
+
+```
+playbooks/project_bootstrap.md
+```
+
+Use when:
+
+- creating a new project
+- bootstrapping an empty repository
+- generating a new application scaffold
+- generating a new boilerplate
+
+After project bootstrap is complete, transition to the standard engineering workflow.
+
+---
 
 ## Repository Understanding
 
@@ -66,9 +93,13 @@ playbooks/repository_indexing.md
 
 Use when:
 
-- beginning a new session
+- beginning a new session with an existing repository
 - indexing a repository
 - understanding repository architecture
+
+Do not use this playbook immediately before Project Bootstrap.
+
+Project Bootstrap should always execute first for new projects.
 
 ---
 
@@ -119,6 +150,13 @@ Always:
 - rely on repository evidence
 - avoid assumptions
 
+When bootstrapping a new project:
+
+- follow the selected framework architecture
+- generate only the required scaffold
+- avoid unnecessary complexity
+- produce a production-ready foundation
+
 The repository remains the architectural authority unless explicitly instructed otherwise.
 
 ---
@@ -147,6 +185,9 @@ Examples:
 
 | User Intent | Playbook |
 |--------------|----------|
+| Create a new project | Project Bootstrap |
+| Create a new boilerplate | Project Bootstrap |
+| Bootstrap a new application | Project Bootstrap |
 | Understand a repository | Repository Indexing |
 | Analyze architecture | Architecture Analysis |
 | Build or modify functionality | Feature Development |
@@ -158,5 +199,17 @@ If multiple playbooks are required:
 - Load them in the correct engineering order.
 - Explain which playbooks are being used.
 - Continue only after the required workflow has been completed.
+
+For newly bootstrapped projects, the workflow becomes:
+
+```
+Project Bootstrap
+        │
+        ▼
+Repository Indexing
+        │
+        ▼
+Normal Engineering Workflow
+```
 
 The user should not need to explicitly reference playbook names during normal engineering work.
