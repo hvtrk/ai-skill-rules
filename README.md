@@ -6,6 +6,7 @@ This repository serves as the "brain" for an AI assistant, ensuring that all aut
 
 ## 🚀 Use Cases
 
+- **Project Bootstrapping**: Safely initialize new software projects and boilerplate using predefined framework knowledge.
 - **AI-Assisted Feature Development**: Agents follow project-specific architecture and coding conventions to implement new features consistently, without re-inventing the wheel.
 - **Automated Code Reviews**: Validate implementations and pull requests against predefined engineering principles, preventing architectural drift and technical debt.
 - **Onboarding & Knowledge Retention**: Maintain project baseline and tech stack details so any new AI session (or human developer) starts with complete, up-to-date context.
@@ -21,7 +22,7 @@ graph TD
     
     subgraph "AI Configuration (.agents/)"
         Rules[rules/ <br> Permanent Principles]
-        Project[knowledge/ <br> Project Context]
+        Project[knowledge/ <br> Project & Framework Context]
         Playbooks[playbooks/ <br> Task Workflows]
     end
     
@@ -30,6 +31,7 @@ graph TD
     AI -.->|3. Select Playbook| Playbooks
     
     AI --> Action{Determine Action}
+    Action -->|Bootstrap| Boot[Generate New Project]
     Action -->|Code Review| Review[Review PRs/Code]
     Action -->|Feature Dev| Dev[Implement Features]
     Action -->|Refactoring| Refactor[Preserve Architecture]
@@ -37,6 +39,7 @@ graph TD
     Review --> Repo[(Target Repository)]
     Dev --> Repo
     Refactor --> Repo
+    Boot --> Repo
     
     classDef config fill:#f9f9f9,stroke:#333,stroke-width:2px;
     class Rules,Project,Playbooks config;
@@ -59,15 +62,17 @@ graph LR
     C --> C1(architecture.md)
     C --> C2(api_contracts.md)
     C --> C3(tech_stack.md)
+    C --> C4(frameworks/)
     
     D --> D1(feature_development.md)
     D --> D2(code_review.md)
+    D --> D3(project_bootstrap.md)
 ```
 
 ### Directory Details
 - **`rules/`**: Permanent engineering principles and behavioral guidelines that the AI must *always* follow (e.g., "Minimize Change", "Preserve Existing Behavior").
-- **`knowledge/`** (Project Context): Project-specific facts, including architecture, API contracts, coding conventions, and technology stack definitions.
-- **`playbooks/`**: Task-specific step-by-step workflows (e.g., how to do a code review, how to develop a feature).
+- **`knowledge/`**: Contains both Project-specific facts (architecture, API contracts, etc.) and Framework Knowledge for supported technologies when bootstrapping new projects.
+- **`playbooks/`**: Task-specific step-by-step workflows (e.g., how to bootstrap a project, how to develop a feature).
 - **`framework/`**: Core definitions and changelogs for the AI configuration itself.
 
 ## 🛠 Getting Started
